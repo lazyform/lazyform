@@ -2,7 +2,7 @@
   "name": "lazyform",
   "description": "Lazyform is a vue component that uses field description objects to quickly generate forms",
   "author": "xianqin@qrmbl.com",
-  "version": "0.1.60",
+  "version": "0.1.61",
   "main": "dist/v-formatter.umd.js",
   "repository": {
     "type": "git",

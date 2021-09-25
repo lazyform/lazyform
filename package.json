@@ -1,20 +1,28 @@
 {
   "name": "lazyform",
-  "description": "Lazyform is a vue component that uses field description objects to quickly generate forms",
-  "author": "xianqin@qrmbl.com",
-  "version": "0.1.61",
-  "main": "dist/v-formatter.umd.js",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/lazyform/lazyform.git"
+  "version": "0.1.80",
+  "main": "dist/lazyform.umd.js",
+  "author": {
+    "name": "xianqin",
+    "email": "lazyform@qrmbl.com",
+    "url": "https://lazyform.xianqin.site"
   },
+  "keywords": [
+    "vue",
+    "form",
+    "forms",
+    "form-builder",
+    "form-generator",
+    "form components",
+    "vue-component"
+  ],
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
     "test:e2e": "vue-cli-service test:e2e",
     "lint": "vue-cli-service lint",
-    "lib": "vue-cli-service build --target lib --name v-formatter ./src/index.ts",
+    "lib": "vue-cli-service build --target lib --name lazyform ./src/index.ts",
     "prepublishOnly": "npm version patch && npm run lib && git push"
   },
   "devDependencies": {
@@ -45,6 +53,5 @@
     "vue-class-component": "^7.2.3",
     "vue-property-decorator": "^9.1.2",
     "vue-template-compiler": "^2.6.11"
-  },
-  "license": "MIT"
+  }
 }

@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <l-form v-model="c" :fields="fields" @submit="submitForm()"/>
+    <lazy-form v-model="formData" :fields="fields" @submit="submitForm()"/>
   </div>
 </template>
 
@@ -8,13 +8,16 @@
   import {Component, Vue} from 'vue-property-decorator';
 
   export default class App extends Vue {
-    private c: any = {username: '', oldname: '', city: ''}
+    private formData: any = {}
     private fields = {
-      username: '',
-      oldname: '',
+      username: {required: true},
+      oldname: {required: true},
+      password: {required: true},
       city: {props: {multiple: true}},
-
-      description: ''
+      email: '',
+      city2: '',
+      introduction: '',
+      isAccept: '',
     }
 
     private created(): void {
@@ -23,7 +26,7 @@
 
 
     private submitForm(): void {
-      console.log(this.c)
+      console.log(this.formData)
     }
   }
 </script>

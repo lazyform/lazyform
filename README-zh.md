@@ -1,6 +1,9 @@
 # lazyform
+懒人表单--使用字段描述对象快速生成复杂表单的VUE组件。   
+![demo-gif](https://raw.githubusercontent.com/lazyform/lazyform/main/public/demo-img.gif "demo-gif")
 
-懒人表单--使用字段描述对象快速生成复杂表单的VUE组件。
+## 特点
+ - 支持任意UI组件
 
 ## 安装
 
@@ -18,13 +21,13 @@ yarn add lazyform
 ```vue
 
 <template>
-  <l-form v-model="formData" :fields="formFields" @submit="onSubmit"/>
+  <lazy-form v-model="formData" :fields="formFields" @submit="onSubmit"/>
 </template>
 <script>
   // ----- main.js -----
   // ...
   import Vue from 'vue'
-  import lForm, {MakeField} from 'lazyform'
+  import lazyform, {MakeField} from 'lazyform'
 
   //import formFieldConfig from '<your path>/formFieldConfig'
   const formFieldConfig = {
@@ -39,7 +42,7 @@ yarn add lazyform
     buttonBtnClass: ''
   }
 
-  Vue.use(lForm, formFieldConfig) // Register the Fields globally
+  Vue.use(lazyform, formFieldConfig) // Register the Fields globally
   // ...
   // ------ main.js end ------
 
@@ -70,13 +73,13 @@ yarn add lazyform
 ```vue
 
 <template>
-  <l-form v-model="formData" :fields="formFields" @submit="onSubmit"/>
+  <lazy-form v-model="formData" :fields="formFields" @submit="onSubmit"/>
 </template>
 <script>
-  import lForm, {MakeField} from 'lazyform'
+  import lazyForm, {MakeField} from 'lazyform'
 
   export default {
-    components: {lForm},
+    components: {lazyForm},
     data() {
       return {
         formData: {},
@@ -109,7 +112,7 @@ disabled|Boolean|false|禁用所有input
 hideBtn|Boolean|false|隐藏按钮
 submitText|String|'提交'|提交按钮文本,''不显示
 resetText|String|''|重置按钮文本,''不显示
-cancelText|String|'取消'|取消按钮文本,''不显示
+cancelText|String|''|取消按钮文本,''不显示
 submitBtnClass|String|''|提交按钮样式
 resetBtnClass|String|''|提交按钮样式
 buttonBtnClass|String|''|提交按钮样式

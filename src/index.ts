@@ -15,10 +15,8 @@ const install = (vue: typeof Vue, options: VFormatterOptions) => {
         })
         Object.freeze(GlobalFields)
     }
-    vue.component('lForm', lazyform)
-    const {submitBtnClass, resetBtnClass, buttonBtnClass} = options
-    Vue.prototype.$vFormatterConfig = {submitBtnClass, resetBtnClass, buttonBtnClass}
-
+    vue.component('lazy-form', lazyform)
+    vue.prototype.$lazyformConfig = options
 }
 
 export {install, makeField, lazyform}

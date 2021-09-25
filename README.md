@@ -1,6 +1,6 @@
-# lazyform
-Lazyform is a vue component that uses field description objects to quickly generate forms
-
+# lazyform -- More Forms. Less Code
+Lazyform is a vue component that uses field description objects to quickly generate forms    
+![demo-gif](https://raw.githubusercontent.com/lazyform/lazyform/main/public/demo-img.gif "demo-gif")
 ## Demo & doc
 Documentation will be available SOON!! 
 
@@ -18,19 +18,19 @@ yarn add lazyform
 Register the component globally
 ```vue
 <template>
-  <l-form v-model="formData" :fields="formFields" @submit="onSubmit"/>
+  <lazy-form v-model="formData" :fields="formFields" @submit="onSubmit"/>
 </template>
 <script>
   // ----- main.js -----
   // ...
   import Vue from 'vue'
-  import lForm, {MakeField} from 'lazyform'
+  import lazyform, {MakeField} from 'lazyform'
   
   //import formFieldConfig from '<your path>/formFieldConfig'
   const formFieldConfig = {
     fields: {
-      account: MakeField('input', 'user name').rules([{min: 6}]),
-      name: MakeField('input', 'user name').rules([{max: 15}]).required(),
+      account: MakeField('input', 'account').rules([{min: 6,max:15}]),
+      name: MakeField('input', 'user name').rules([{max: 15}]),
       email: MakeField('input', 'email').pattern("/^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/")
     },
     submitBtnClass: '',
@@ -38,7 +38,7 @@ Register the component globally
     buttonBtnClass: ''
   }
   
-  Vue.use(lForm, formFieldConfig) // Register the Fields globally
+  Vue.use(lazyform, formFieldConfig) // Register the Fields globally
   // ...
   // ------ main.js end ------
   
@@ -48,10 +48,10 @@ Register the component globally
         formData: {},
         formFields: {
           // <field name>:<reference value|field Object>
+          account: {required: true},
           name: '',
           email: '',
           autoFields: 'a@demo.com', // Unknown field: Try to match global fields through regular expressions
-          account: {required: true}
         }
       }
     },
@@ -66,12 +66,12 @@ Register the component globally
 Register the component locally.
 ```vue
 <template>
-  <l-form v-model="formData" :fields="formFields" @submit="onSubmit"/>
+  <lazy-form v-model="formData" :fields="formFields" @submit="onSubmit"/>
 </template>
 <script>
-  import lForm, {MakeField} from 'lazyform'
+  import lazyForm, {MakeField} from 'lazyform'
   export default {
-    components:{lForm},
+    components:{lazyForm},
     data(){
       return {
         formData: {},
@@ -102,9 +102,9 @@ inLine|Boolean|false|input is displayed on line.
 onlyRead|Boolean|false|Set all INPUT to read-only.
 disabled|Boolean|false|Set all INPUT to Disabled.
 hideBtn|Boolean|false|Hide button
-submitText|String|'提交'|Submit button text, '' does not display
+submitText|String|'submit'|Submit button text, '' does not display
 resetText|String|''|Reset button text, '' does not display
-cancelText|String|'取消'|Cancel button text, '' does not display
+cancelText|String|''|Cancel button text, '' does not display
 submitBtnClass|String|''|Submit button class
 resetBtnClass|String|''|Reset button class
 buttonBtnClass|String|''|Cancel button class
@@ -127,7 +127,7 @@ MakeField|(component, label)|
 | |.placeholder(placeholder = '') |  
 | |.description(description = '') |  
 | |.rules([{},...]) |  Rules, See more usage at [async-validator](https://github.com/yiminghe/async-validator)
-| |.required(isRequired=true) |  Is it required
+| |.required() |  Is it required
 | |.props({}) | Props passed to the INPUT component
 
 ## Issues and requests

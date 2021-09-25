@@ -1,3 +1,5 @@
+import {RuleItem} from "@/@types/ruleItem";
+
 class InputField {
     field: Field
 
@@ -34,7 +36,9 @@ class InputField {
     pattern(regExp: RegExp, errorText = '') {
         this.field.pattern = regExp
         this.field.errorText = errorText
-        this.field.rules.push({pattern: regExp, message: errorText, trigger: 'input'})
+        const rule: RuleItem = {pattern: regExp, trigger: 'input'}
+        if (errorText) rule.message = errorText
+        this.field.rules.push(rule)
         return this
     }
 
@@ -58,7 +62,7 @@ class InputField {
         return this
     }
 
-    rules(rules: Array<any> = []) {
+    rules(rules: Array<RuleItem> = []) {
         this.field.rules = rules
         this.field.required = this.field.rules.filter(item => item.required).length != 0
         return this
@@ -67,7 +71,7 @@ class InputField {
     required(isRequired: boolean | string = true) {
         this.field.required = isRequired ? true : false
         const i = this.field.rules.findIndex(rule => rule.required || rule.required === false)
-        const newRule = {required: true, trigger: 'blur', transform: (v: any) => `${v}`, message: ''}
+        const newRule: RuleItem = {required: true, trigger: 'blur', transform: (v: any) => `${v}`}
         if (typeof isRequired == 'string') newRule.message = `${isRequired}`
         if (i == -1 && isRequired) this.field.rules.push(newRule)
         if (i !== -1 && !isRequired) this.field.rules.splice(i, 1)

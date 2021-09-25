@@ -1,9 +1,9 @@
 export default {
     submitText: '提交',
-    cancelText: '取消',
-    validator:{
+    cancelText: '',
+    asyncValidatorI18n:{
         default: '字段%s验证错误',
-        required: '字段%s必填',
+        required: '%s 必填',
         enum: '%只能是%其中之',
         whitespace: '%s不能为空',
         date: {

@@ -1,5 +1,6 @@
+
 interface Field {
-    component: VanComponent;
+    component: VueComponent;
     alias: string | { prop: string; label: string } | [string | { prop: string; label: string }];
     pattern: null | string | RegExp;
     label: string;

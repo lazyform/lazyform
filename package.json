@@ -7,6 +7,11 @@
     "email": "lazyform@qrmbl.com",
     "url": "https://lazyform.xianqin.site"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lazyform/lazyform.git"
+  },
+  "license" : "MIT",
   "keywords": [
     "vue",
     "form",

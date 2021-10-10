@@ -1,6 +1,6 @@
 {
   "name": "lazyform",
-  "version": "0.1.84",
+  "version": "0.1.85",
   "main": "dist/lazyform.umd.js",
   "author": {
     "name": "xianqin",
@@ -11,7 +11,7 @@
     "type": "git",
     "url": "https://github.com/lazyform/lazyform.git"
   },
-  "license" : "MIT",
+  "license": "MIT",
   "keywords": [
     "vue",
     "form",

@@ -1,6 +1,6 @@
 {
   "name": "lazyform",
-  "version": "0.1.85",
+  "version": "0.1.86",
   "main": "dist/lazyform.umd.js",
   "author": {
     "name": "xianqin",

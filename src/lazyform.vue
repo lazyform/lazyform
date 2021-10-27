@@ -118,7 +118,6 @@ export default class extends Vue {
     return this.labelMinWidth === 0 ? this.autoLabelWidth() : _w
   }
 
-  private _formRules: any = {}
   private _validatorSchemaAll: any = {}
   private _validatorSchemaInput: any = {}
   formData: any = {}
@@ -159,23 +158,8 @@ export default class extends Vue {
     return _
   }
 
-  validate(cb: (valid: boolean) => void) {
-    const formSchema = this._newSchema(this._formRules)
-    const _validate = formSchema.validate(this.formData, validateOption, (errors: any, fields: any) => {
-      if (errors) {
-        errors.forEach((err: any) => {
-          this.$set(this.validatorFieldsErrors, err.field, err.message)
-        })
-        cb(false)
-      } else {
-        this.validatorFieldsErrors = {}
-        cb(true)
-      }
-    })
-    _validate.catch(() => {
-    })
-
-    return _validate
+  validate() {
+    return Promise.all(Object.keys(this.formData).map(key => this.validateField(key)))
   }
 
   autoLabelWidth() {
@@ -205,14 +189,12 @@ export default class extends Vue {
   }
 
   onSubmit($event: Event) {
-    this.validate((valid) => {
-      if (valid) {
-        this.onFormInput()
-        this.$emit('submit', $event)
-      } else {
-        this.$emit('fail', $event)
-        console.log('lazyform validate fail')
-      }
+    this.validate().then(() => {
+      this.onFormInput()
+      this.$emit('submit', $event)
+    }).catch((err: any) => {
+      this.$emit('fail', $event)
+      console.log('lazyform validate fail')
     })
   }
 
@@ -231,7 +213,6 @@ export default class extends Vue {
   private _validatorUpdateRules(items: Array<any>) {
     const _input: any = {}
     const _all: any = {}
-    this._formRules = {}
     items.forEach(item => {
       if (item.field.rules.length == 0 && item.field.required) {
         const requiredRule: RuleItem = {required: true}
@@ -245,7 +226,6 @@ export default class extends Vue {
           rule.fullField = item.field.label
           return rule
         })
-        this._formRules[item.field.key] = rules
         descriptor[item.field.key] = rules
         descriptorInput[item.field.key] = rules.filter((rule: RuleItem) => rule.trigger == 'input')
         _all[item.field.key] = this._newSchema(descriptor)
